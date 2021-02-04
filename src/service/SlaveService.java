@@ -5,9 +5,7 @@ import entity.Whore;
 import repo.SlaveRepo;
 import repo.WhoreRepo;
 
-import javax.swing.plaf.SpinnerUI;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class SlaveService {
 
