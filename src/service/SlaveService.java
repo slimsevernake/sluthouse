@@ -1,20 +1,30 @@
 package service;
 
+import entity.Slave;
 import entity.Whore;
+import repo.SlaveRepo;
 import repo.WhoreRepo;
 
+import javax.swing.plaf.SpinnerUI;
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class WhoreService {
+public class SlaveService {
 
     private WhoreRepo whoreRepo;
+    private SlaveRepo slaveRepo;
 
-    public WhoreService() {
+    public SlaveService() {
         whoreRepo = new WhoreRepo();
+        slaveRepo = new SlaveRepo();
     }
 
     public void addWhore(Whore whore) {
         whoreRepo.add(whore);
+    }
+
+    public void addSlave(Slave slave) {
+        slaveRepo.add(slave);
     }
 
     public Whore getWhoreByName(String name) {
@@ -42,6 +52,20 @@ public class WhoreService {
 
     public ArrayList<Whore> getAllWhores() {
         return whoreRepo.getAll();
+    }
+
+    public ArrayList<Slave> getSortedSlavesByStrange() {
+        ArrayList<Slave> sortedSlaves = slaveRepo.getAll();
+        for (int i = 0; i < sortedSlaves.size() - 1; i++) {
+            for (int j = sortedSlaves.size() - 1; j > i; j--) {
+                if (sortedSlaves.get(j - 1).getStrange() > sortedSlaves.get(j).getStrange()) {
+                    Slave tempSlave = sortedSlaves.get(j - 1);
+                    sortedSlaves.set(j - 1, sortedSlaves.get(j));
+                    sortedSlaves.set(j, tempSlave);
+                }
+            }
+        }
+        return sortedSlaves;
     }
 }
 

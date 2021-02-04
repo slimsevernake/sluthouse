@@ -1,7 +1,8 @@
 package menu;
 
+import entity.Slave;
 import entity.Whore;
-import service.WhoreService;
+import service.SlaveService;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,11 +10,11 @@ import java.util.Scanner;
 public class WhoreHouseMenu {
 
     private Scanner in;
-    private WhoreService service;
+    private SlaveService service;
 
     public WhoreHouseMenu() {
         in = new Scanner(System.in);
-        service = new WhoreService();
+        service = new SlaveService();
         printMenu();
     }
 
@@ -28,6 +29,7 @@ public class WhoreHouseMenu {
         System.out.println("2) Найти шлюху по имени");
         System.out.println("3) Вывести имена всех шлюх");
         System.out.println("4) Выкупить проститутку :(");
+        System.out.println("5) Вывести имена всех рабов по возрастанию силы.......");
         System.out.println("0) Самовыпил");
         int choice = in.nextInt();
 
@@ -47,6 +49,11 @@ public class WhoreHouseMenu {
                 System.out.println("Ура вы купили малышку");
             } else {
                 System.out.println("брат тебе не хватит..");
+            }
+        } else if (choice == 5) {
+            ArrayList<Slave> slavesFromDB = service.getSortedSlavesByStrange();
+            for (Slave slave : slavesFromDB) {
+                System.out.println(slave.getName() + " ");
             }
         } else if (choice == 0){
             return;
