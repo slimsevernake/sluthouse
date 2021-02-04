@@ -17,12 +17,15 @@ public class WhoreRepo {
         this.whores = whoresFromRussia;
     }
 
-
     public void add(Whore whore) {
         whores.add(whore);
     }
 
     public ArrayList<Whore> getAll() {
         return whores;
+    }
+
+    public void remove(Whore removedWhore) {
+        whores.remove(removedWhore);
     }
 }

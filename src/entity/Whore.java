@@ -17,4 +17,14 @@ public class Whore extends Person {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public double getPrice() {
+        return this.price;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "тэнге=" + price;
+    }
 }

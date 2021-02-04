@@ -17,25 +17,31 @@ public class WhoreService {
         whoreRepo.add(whore);
     }
 
-    public void getWhoreByName(String name) {
+    public Whore getWhoreByName(String name) {
         ArrayList<Whore> whoresFromRepo = whoreRepo.getAll();
         if (!whoresFromRepo.isEmpty()) {
             for (Whore currentWhore : whoresFromRepo) {
                 if (name.equals(currentWhore.getName())) {
-                    System.out.println(
-                            "Проститутка " + currentWhore.getName() + " ждет вас :)");
+                    return currentWhore;
                 }
             }
-            return;
         }
-        System.out.println("Шлюх нет :(");
+        return null;
     }
 
-    public void printAllWhoresNames() {
-        ArrayList<Whore> whoresFromRepo = whoreRepo.getAll();
-        for (Whore currentWhore : whoresFromRepo) {
-            System.out.println(currentWhore.getName() + " ");
+    public boolean buyWhore(String name, double moneyThatClientHave) {
+        Whore whoreThatICouldBuy = getWhoreByName(name);
+        if (whoreThatICouldBuy != null) {
+            if (whoreThatICouldBuy.getPrice() <= moneyThatClientHave) {
+                whoreRepo.remove(whoreThatICouldBuy);
+                return true;
+            }
         }
+        return false;
+    }
+
+    public ArrayList<Whore> getAllWhores() {
+        return whoreRepo.getAll();
     }
 }
 
