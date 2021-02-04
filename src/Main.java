@@ -1,3 +1,5 @@
+import menu.WhoreHouseMenu;
+
 /*
 VCS -> Enable VSC Integration
 жизненный цикл: add -> commit -> push
@@ -5,6 +7,6 @@ VCS -> Enable VSC Integration
  */
 public class Main {
     public static void main(String[] args) {
-
+        new WhoreHouseMenu();
     }
 }
